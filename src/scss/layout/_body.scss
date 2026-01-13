@@ -220,7 +220,7 @@ body {
             border-radius: 50%;
             
             
-            background-image: url('/src/assets/unchecked.png'); 
+            background-image: url('./src/assets/unchecked.png'); 
             background-position: center;
             background-size: cover;
 
@@ -236,7 +236,7 @@ body {
         }
 
         li.checked::before{
-            background-image: url('/src/assets/checked.png');
+            background-image: url('./src/assets/checked.png');
         }
 
         li span{
