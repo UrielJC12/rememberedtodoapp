@@ -38,30 +38,57 @@
         </nav>    
     </header>
 
+    <aside class="aside">
+        <header class="menubar">
+            <img class="logo-dark" src="src/assets/logo-dark.svg" alt="svg">
+            <img class="logo-light" src="src/assets/logo-light.svg" alt="svg">
+            <img class="menu-dark menu" src="src/assets/menu-svgrepo-com.svg" alt="svg">
+            <img class="menu-light menu" src="src/assets/menu-light.svg" alt="svg">
+        </header>
+        <nav class="operations">
+            <a href="#today" class="nav-link active">Today</a>
+            <a href="#upcoming" class="nav-link">Upcoming</a>
+            <a href="#completed" class="nav-link">Completed</a>
+            <a href="#places" class="nav-link">Places</a>
+            <a href="#calendar" class="nav-link">Calendar</a>
+            <a class="nav-link">Settings
+                <img class="settings-dark" src="src/assets/settings-dark.svg" alt="svg">
+                <img class="settings-light" src="src/assets/settings-light.svg" alt="svg">
+            </a>
+        </nav>
+    </aside>
     <div class="main-container">
-        <aside class="aside">
-            <header class="menubar">
-                <img class="logo-dark" src="src/assets/logo-dark.svg" alt="svg">
-                <img class="logo-light" src="src/assets/logo-light.svg" alt="svg">
-                <img class="menu-dark menu" src="src/assets/menu-svgrepo-com.svg" alt="svg">
-                <img class="menu-light menu" src="src/assets/menu-light.svg" alt="svg">
-            </header>
-            <nav class="operations">
-                <a href="#today" class="nav-link active">Today</a>
-                <a href="#upcoming" class="nav-link">Upcoming</a>
-                <a href="#completed" class="nav-link">Completed</a>
-                <a href="#places" class="nav-link">Places</a>
-                <a href="#calendar" class="nav-link">Calendar</a>
-                <a class="nav-link">Settings
-                    <img class="settings-dark" src="src/assets/settings-dark.svg" alt="svg">
-                    <img class="settings-light" src="src/assets/settings-light.svg" alt="svg">
-                </a>
-            </nav>
-        </aside>
-        <section class="notebook">
-            <img src="src/assets/notebook-notepad-svgrepo-com.svg" alt="notepad">
-    
-        </section>
+
+            <article class="content area">
+                <div class="place">
+                    <div>
+                        <input type="text" id="place-box" placeholder="Set a place">
+                        <img class="location-icon_dark" src="src/assets/dark-place.svg" alt="svg">
+                        
+                        <button type="button">Add</button>
+                    </div>
+                </div>
+
+                <section class="notebook">
+                    <div class="page" id="pageToCapture">
+                        <img src="src/assets/notebook.svg" class="notebook-bg" alt="notepad">
+                        
+                        <div class="notebook-content">
+                            <div class="row">
+                                <input type="text" id="input-box" placeholder="Add your note">
+                                <input type="date" id="date-box" placeholder="Date">
+                                <button type="button" onclick="addTask()">Add</button>
+                            </div>
+                            <ul id="list-container">
+                                <!-- <li class="checked">Task 1</li>
+                                <li>Task 2</li>
+                                <li>Task 3</li> -->
+        
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </article>
     </div>
 </body>
 </html>

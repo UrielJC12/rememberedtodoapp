@@ -5,34 +5,263 @@
 body {
     display: flex;
     flex-direction: column; /* Header arriba, resto abajo */
+    width: 100%;
     height: 100vh;
     margin: 0;
     transition: $transition-default;
+    overflow-y: hidden;
 }
 
 /* Crea un contenedor para lo que va debajo del header */
 .main-container {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex: 1; /* Ocupa el resto del espacio vertical */
+    background-color: var(--color-bg);
 }
 
-/* Asegura que la sección del cuaderno crezca para llenar el espacio */
+.content-area {
+    flex: 1;              
+    display: flex;           
+    flex-direction: column; 
+    align-items: center;     
+    justify-content: center; 
+    gap: 20px;             
+    position: relative;
+}
+
+.place{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: transparent;
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 40%;
+        background-color: #EBF0F3;
+        border-radius: 30px;
+    
+
+        
+        #place-box{
+            border-radius: 30px;
+            flex: 1;                 
+            min-width: 0;           
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 15px 20px;         
+            box-sizing: border-box;  
+            font-size: $h4;
+            color: #141414;
+        }
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            color: var(--color-text);
+            padding: 16px 40px;
+            background-color: var(--color-accent);
+            width: 60px;
+            cursor: pointer;
+        }
+        .location-icon_dark{
+            display: block;
+            max-width: 30px;
+            background-color: transparent;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+    }
+}
+
+
+
 .notebook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1; /* Esto obliga a la sección a ocupar todo el ancho restante */
     background-color: var(--color-bg);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     @include respond-to('tablet') {
         padding: 0%;
     }
     
     @include respond-to('phone') {
+        width: 100%;
         padding: 0%;
     }
+
+    .page {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+
 }
+
+
+    .notebook-content {
+    position: absolute;
+    /* Ajustamos los márgenes para no escribir sobre los espirales */
+    top: 10%;   
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;  /* Ancho disponible */
+    height: 75%; /* Alto disponible */
+    padding-right: 10px; /* Espacio para que el scroll no tape el texto */
+    
+
+    color: var(--color-text);
+}
+    .row{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 10px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $orange;
+        border-radius: 30px;
+        padding: 10px;
+        margin-bottom: 10px;
+        
+    }
+
+    /* 2. Estilos compartidos para ambos inputs */
+    #input-box, #date-box {
+        flex: 1;                 /* Ambos intentarán ocupar el mismo espacio (50% y 50%) */
+        min-width: 0;            /* CRUCIAL: Permite que el input se encoja si la pantalla es pequeña */
+        border: none;
+        outline: none;
+        background: #EBF0F3;
+        padding: 15px 20px;
+        height: 50px;            /* Forzamos la misma altura para ambos */
+        box-sizing: border-box;  /* Asegura que el padding no deforme el tamaño */
+        
+        /* Tipografía */
+        font-size: $h4;
+        color: #141414;
+    }
+
+    #input-box{
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+
+
+
+
+    }
+
+    #date-box{
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        
+    }
+
+    button{
+        position: relative;
+        border: none;
+        outline: none;
+        padding: 15px 50px;
+        background: $orange;
+        color: var(--color-text);
+        font-size: $h3;
+        cursor: pointer;
+        border-radius: 30px;
+        transition: $transition-default;
+        &:hover{
+            opacity: 0.8;
+            background-color: #CE8043;
+        }
+        
+    }
+    #list-container{
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-left: 40px;
+        padding-right: 10px;
+        
+    
+
+        li{
+            list-style: none;
+            font-size: $h4;
+            color: #141414;
+            cursor: pointer;
+            position: relative;
+            padding-left: 40px;
+            line-height: 3rem;
+            border-bottom: 1px solid #141414;
+            width: 90%;
+            left: 3%;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            
+            
+            background-image: url('/src/assets/unchecked.png'); 
+            background-position: center;
+            background-size: cover;
+
+            
+            left: 0;            /* Lo pegamos a la izquierda del todo */
+            top: 50%;           /* Lo bajamos a la mitad de la altura del li */
+            transform: translateY(-50%); /* Lo subimos un poquito para centrarlo verticalmente exacto */
+        }
+
+        li.checked{
+            color: #555;
+            text-decoration: line-through;
+        }
+
+        li.checked::before{
+            background-image: url('/src/assets/checked.png');
+        }
+
+        li span{
+            position: absolute;
+            right: 0;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            font-size: $h2;
+            color: #555;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            transition: $transition-default;
+        }
+
+        li span:hover{
+            background: #d4d4d4;
+        }
+    }
+
+}
+
+
+
 
 .notebook img {
     width: 100%; 
@@ -41,4 +270,5 @@ body {
 
 
 }
+
 

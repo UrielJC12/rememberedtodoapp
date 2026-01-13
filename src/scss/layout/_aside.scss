@@ -9,6 +9,7 @@ aside {
     top: 0%;
     bottom: 0%;
     transition: $transition-slow;
+    z-index: 10000;
     header {
         display: flex;
         justify-content: space-between;
