@@ -219,12 +219,12 @@ body {
             width: 28px;
             border-radius: 50%;
             
-            /* Ruta de la imagen (asegúrate que sea la correcta) */
+            
             background-image: url('/src/assets/unchecked.png'); 
-            background-size: cover;
             background-position: center;
+            background-size: cover;
 
-            /* --- ALINEACIÓN PERFECTA --- */
+            
             left: 0;            /* Lo pegamos a la izquierda del todo */
             top: 50%;           /* Lo bajamos a la mitad de la altura del li */
             transform: translateY(-50%); /* Lo subimos un poquito para centrarlo verticalmente exacto */
