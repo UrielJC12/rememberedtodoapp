@@ -12,7 +12,7 @@ function buildStyles() {
 // Vigilar cambios en archivos SCSS
 function watchStyles() {
     watch('src/scss/**/*.scss', buildStyles);
-    console.log('👀 Observando cambios en SCSS...');
+    console.log(' Observando cambios en SCSS...');
 }
 
 // Compilar una sola vez

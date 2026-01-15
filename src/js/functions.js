@@ -56,25 +56,62 @@ themeButton.addEventListener('click', () => {
 
 //notebook funtionality
 
-const inutBox = document.getElementById("input-box");
+const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
-
-function addTask(){
-    if (inutBox.value === ''){
+const dateBox = document.getElementById("date-box");
+function addTask() {
+    if (inputBox.value.trim() === '') {
         alert("You need to add something");
-
-    } 
-    else {
-        let li = document.createElement("li");
-        li.innerHTML = inutBox.value;
-        listContainer.appendChild(li);
-        let span = document.createElement("span");
-        span.innerHTML = "\u00d7";
-        li.appendChild(span);
+        return;
     }
-    inutBox.value = ""
+
+    let li = document.createElement("li");
+    let dateText = "";
+    if (dateBox.value) {
+        const selectedDate = new Date(dateBox.value + 'T00:00:00');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const diffTime = selectedDate.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) {
+            dateText = " (today)";
+        } else if (diffDays === 1) {
+            dateText = " (tomorrow)";
+        } else if (diffDays > 1) {
+            dateText = ` (in ${diffDays} days)`;
+        } else {
+            dateText = " (expired)";
+        }
+    }
+
+    // Insertar contenido: Texto + Fecha en pequeño
+    li.innerHTML = `${inputBox.value} <small class="date-label">${dateText}</small>`;
+    
+    // Crear botón de eliminar
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7";
+    li.appendChild(span);
+
+    listContainer.appendChild(li);
+
+    // Limpiar campos y devolver el foco al input
+    inputBox.value = "";
+    dateBox.value = "";
     saveData();
+    inputBox.focus(); 
 }
+
+inputBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter"){
+        addTask();
+        saveData();
+    }
+});
+
+
+
 
 listContainer.addEventListener("click", (e) => {
     if(e.target.tagName === "LI"){
@@ -86,6 +123,19 @@ listContainer.addEventListener("click", (e) => {
     }
 
 }, false);
+
+function clearTasks() {
+    if (confirm("¿Estás seguro de que quieres borrar todas las notas?")) {
+        // 1. Limpia el contenedor visualmente
+        listContainer.innerHTML = "";
+        
+        // 2. Borra los datos del almacenamiento local
+        localStorage.removeItem('data'); 
+        
+        // Opcional: devolver el foco al input
+        inputBox.focus();
+    }
+}
 
 const saveData = () => {
     localStorage.setItem('data', listContainer.innerHTML);

@@ -423,6 +423,7 @@ body {
 }
 
 .notebook {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -460,6 +461,20 @@ body {
   padding-right: 10px; /* Espacio para que el scroll no tape el texto */
   color: var(--color-text);
 }
+.notebook .notebook-content .clear_task_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  background-color: transparent;
+  color: #666;
+  font-style: italic;
+  margin: 10px;
+  font-size: 1em;
+  border-radius: 50%;
+}
+.notebook .notebook-content .clear_task_btn:hover {
+  color: brown;
+}
 .notebook .row {
   display: flex;
   align-items: center;
@@ -479,6 +494,9 @@ body {
   /* 2. Estilos compartidos para ambos inputs */
 }
 .notebook #input-box, .notebook #date-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   flex: 1; /* Ambos intentarán ocupar el mismo espacio (50% y 50%) */
   min-width: 0; /* CRUCIAL: Permite que el input se encoja si la pantalla es pequeña */
   border: none;
@@ -516,12 +534,19 @@ body {
   background-color: #CE8043;
 }
 .notebook #list-container {
-  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
   overflow-y: auto;
   padding-left: 40px;
   padding-right: 10px;
 }
 .notebook #list-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
   list-style: none;
   font-size: 1rem;
   color: #141414;
@@ -539,7 +564,7 @@ body {
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-image: url("../../src/assets/unchecked.png");
+  background-image: url("https://urieljc12.github.io/rememberedtodoapp/src/assets/unchecked.png");
   background-position: center;
   background-size: cover;
   left: 0; /* Lo pegamos a la izquierda del todo */
@@ -551,10 +576,9 @@ body {
   text-decoration: line-through;
 }
 .notebook #list-container li.checked::before {
-  background-image: url("../../src/assets/checked.png");
+  background-image: url("https://urieljc12.github.io/rememberedtodoapp/src/assets/checked.png");
 }
 .notebook #list-container li span {
-  position: absolute;
   right: 0;
   top: 5px;
   width: 40px;
@@ -565,9 +589,19 @@ body {
   text-align: center;
   border-radius: 50%;
   transition: 0.3s ease;
+  text-decoration: none;
 }
 .notebook #list-container li span:hover {
-  background: #d4d4d4;
+  color: #141414;
+}
+.notebook .date-label {
+  white-space: nowrap;
+  margin-left: auto;
+  font-size: 0.7em;
+  color: #666;
+  margin-left: 8px;
+  font-style: italic;
+  font-weight: normal;
 }
 
 .notebook img {
